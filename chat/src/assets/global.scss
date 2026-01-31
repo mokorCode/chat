@@ -1,0 +1,76 @@
+body, #app, #main{
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    border-color: #30363d !important;
+}
+
+.color-background{
+    background-color: #0d1117;
+}
+
+*{
+    color: #c9d1d9;
+}
+
+.color-header{
+    background: #333333
+}
+
+
+.color-separate{
+    background-color: #161b22
+}
+    @keyframes item-hover {
+        0%{
+            stroke-dasharray: 100px 100px;
+            stroke-dashoffset: 100px;
+        }
+
+        100%{
+            stroke-dasharray: 100px 100px;
+            stroke-dashoffset: 100px;
+        }
+    }
+
+.item{
+    transition: transform 0.3s ease-out;
+    &:hover{
+        cursor: pointer;
+        background-color: #555;
+        transform: scale(1.2) rotate(-15deg);
+    }
+    height: 30px;
+    width: 30px;
+}
+
+.star:hover{
+    transition: transform 1s ease-in-out;
+    background-color: transparent;
+    transform: scale(1.2) rotate(360deg);
+}
+
+.star svg{
+    animation: star-shadow 2s infinite;
+    border-radius: 16px;
+}
+
+@keyframes star-shadow{
+    0%{
+        box-shadow:0 0 5px 2px #ffd700;
+    }
+
+    50%{
+        box-shadow:0 0 15px 5px #ffea00;
+    }
+
+    100%{
+        box-shadow:0 0 5px 2px #ffd700;
+    }
+}
+
