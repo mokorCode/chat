@@ -1,56 +1,20 @@
 <script setup lang="ts" name="Login">
-import { FALSE } from 'sass'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/utils/useUserStore'
+import { baseUrl } from '@/utils/useRouter.vue'
+const userStore = useUserStore()
 let password = ref('')
 let username = ref('')
-let loading = ref(false)
+let loading = ref(true)
 const router = useRouter()
+
 let token: string | null = localStorage.getItem('token')
 if (token == 'undefined'){
     token = ''
 }
-alert(token ? token : 'No token found')
-
-async function token_login(token: string) {
-    loading.value = true
-    const controller = new AbortController()
-    const abort = setTimeout(() => {
-        controller.abort()
-    }, 5000)
-    try {
-        const response = await fetch('http://localhost:8000/token', {
-            'method': 'POST',
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            'signal': controller.signal
-        })
-        if (response.ok){
-            const data = await response.json()
-            localStorage.setItem('token', data.access_token)
-            alert(`
-            自动登录成功
-            new token: ${data.access_token}
-            `)
-            router.replace('/chat')
-        }
-        else {
-            alert(`response: ${response.statusText},
-            自动登录失败`)
-        }
-    }
-    catch {
-      alert('连接超时')  
-    }
-    finally {
-        loading.value = false
-        clearTimeout(abort)
-    }
-
-
-}
+alert(token ? token : `No token found ${token}`)
+const tokenLogin = userStore.tokenLogin
 
 function jumpToRegister() {
     router.push('/register')
@@ -63,7 +27,7 @@ async function login() {
         controller.abort()
     }, 5000)
     try {
-        const response = await fetch('http://localhost:8000/login', {
+        const response = await fetch(`${baseUrl}/login`, {
             'method': 'POST',
             'headers': {
                 'Content-Type': 'application/json'
@@ -77,6 +41,8 @@ async function login() {
         if (response.ok){
             const data = await response.json()
             localStorage.setItem('token', data.access_token)
+            userStore.user.token = data.access_token
+            router.push('/chat')
         }
         else {
             alert('登录失败')
@@ -93,7 +59,13 @@ async function login() {
 }
 
 if (token) {
-    token_login(token)
+    tokenLogin(token, 5000, () => { 
+        loading.value = false
+        router.push('/chat')
+    }, () => { loading.value = false} )
+}
+else {
+    loading.value = false
 }
 </script>
 <template>

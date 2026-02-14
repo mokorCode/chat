@@ -1,0 +1,53 @@
+{
+   "id": "6f8b5872-7a61-5a97-86a8-9ae6bd8b58ad",
+   "isRead": true,
+   "msgNum": 0,
+   "members": [
+      "awdawd",
+      "awdawd"
+   ],
+   "contents": [
+      {
+         "time": "1770913650305",
+         "fromUser": "awdawd",
+         "id": 0,
+         "content": "w",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770914909688",
+         "fromUser": "awdawd",
+         "id": 1,
+         "content": "w",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770915012216",
+         "fromUser": "awdawd",
+         "id": 2,
+         "content": "p",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770915017301",
+         "fromUser": "awdawd",
+         "id": 3,
+         "content": ";",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770915098491",
+         "fromUser": "awdawd",
+         "id": 4,
+         "content": "?",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770915129765",
+         "fromUser": "awdawd",
+         "id": 5,
+         "content": "aawdada",
+         "type": "msg-user"
+      }
+   ]
+}

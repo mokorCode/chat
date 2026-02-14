@@ -1,0 +1,32 @@
+{
+   "id": "3ca1cdfb-82b0-59f0-9baa-8016933ec1ab",
+   "isRead": true,
+   "msgNum": 0,
+   "members": [
+      "awdawd",
+      "@mokor@"
+   ],
+   "contents": [
+      {
+         "time": "1770826766754",
+         "fromUser": "awdawd",
+         "id": 0,
+         "content": "d",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770826769953",
+         "fromUser": "awdawd",
+         "id": 1,
+         "content": "''",
+         "type": "msg-user"
+      },
+      {
+         "time": "1770826934983",
+         "fromUser": "awdawd",
+         "id": 2,
+         "content": "d",
+         "type": "msg-user"
+      }
+   ]
+}

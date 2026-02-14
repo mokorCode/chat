@@ -1,13 +1,22 @@
-body, #app, #main{
+body, #app, #main, html{
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    background-color: #233;
+    overflow: hidden;
 }
+
 
 *{
     border-color: #30363d !important;
+    scrollbar-width: thin;
+    scrollbar-color: #58a6ff transparent;
+    &::selection {
+        background-color: transparent;
+        color: #0351aa;
+    }
 }
 
 .color-background{
@@ -50,9 +59,9 @@ body, #app, #main{
 }
 
 .star:hover{
-    transition: transform 1s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     background-color: transparent;
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.2) rotate(180deg);
 }
 
 .star svg{
@@ -72,5 +81,82 @@ body, #app, #main{
     100%{
         box-shadow:0 0 5px 2px #ffd700;
     }
+}
+
+.sessions {
+    transition: border-color 0.3s ease-out;
+    &:hover {
+        cursor: pointer;
+        border-color: #58a6ff !important;
+    }
+}
+
+.selected-session {
+    border-color: #58a6ff !important;
+}
+.session-input .el-input .el-input__wrapper {
+    background-color: transparent;
+    border-radius: 0 0 16px 16px;
+    box-shadow: none;
+    &.el-input__inner {
+        height: 100%;
+    }
+}
+
+
+.session-input .el-input .el-input__inner {
+    color: #c9d1d9;
+    letter-spacing: 1.5px;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 100%;
+}
+.scrollbar {
+    margin-top: 12px;
+}
+.allow-skip-bottom {
+    animation: allow-skip-bottom 0.5s ease-in forwards;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+    &:hover {
+        background-color: #58a6ff !important;
+        cursor: pointer;
+    }
+}
+
+@keyframes allow-skip-bottom {
+    0%{
+        transform: translateY(0);
+    }
+
+    100%{
+        transform: translateY(-10px);
+    }
+}
+
+.msg-user-right .msg-user-content {
+    background: #0351aa !important;
+    // align-self: flex-end;
+}
+
+// .msg-user-right .msg-user-from-user{
+//     align-self: flex-end;
+// }
+
+// .msg-user-right .msg-user-time {
+//     align-self: flex-end;
+// }
+
+// .msg-user-right .msg-user-avater {
+//     justify-self: flex-end !important;
+//     align-self: flex-end !important;
+// }
+
+.public-chat {
+    color: orange !important;
+}
+
+.public-chat-before {
+    color: #58a6ff !important;
 }
 

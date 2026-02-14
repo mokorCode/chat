@@ -1,12 +1,32 @@
 <script setup lang="ts" name="Register">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/utils/useUserStore'
+import { baseUrl } from '@/utils/useRouter.vue'
+const userStore = useUserStore()
 let password = ref('')
 let username = ref('')
 let ensurePassword = ref('')
-let loading = ref(false)
+let loading = ref(true)
 const router = useRouter()
-
+const token = userStore.user.token
+const tokenLogin = userStore.tokenLogin
+if ( token ) {
+    tokenLogin(
+        token,
+        5000,
+        () => {
+            loading.value = false
+            router.push('/chat')
+        },
+        () => {
+            loading.value = false
+        }
+    )
+}
+else {
+    loading.value = false
+}
 class RegisterData {
     username: string = ''
     password: string = ''
@@ -21,12 +41,17 @@ async function register(e: any) {
     const data = new RegisterData()
     data.username = username.value
     data.password = password.value
+    if ((data.password[0] == ' ') || (data.username[0] == ' ')) {
+        alert("用户名和密码开头不能为空")
+        loading.value = false
+        return
+    }
     const controller = new AbortController()
     const timeout = setTimeout(() => {
         controller.abort();
     }, 5000);
     try {
-        const response = await fetch('http://localhost:8000/register', {
+        const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,6 +63,7 @@ async function register(e: any) {
         if (response.ok) {
             const token = responseData.access_token
             localStorage.setItem('token', token)
+            userStore.user.token = token
             router.push('/login')
         } else {
             alert(responseData.detail)
